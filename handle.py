@@ -34,7 +34,7 @@ class Handle(object):
 			webData = web.data()
 			print('handle POST webdata %s',webData)
 			recMsg = receive.parse_xml(webData)
-			if isinstance(recMsg,receive.Msg)
+			if isinstance(recMsg,receive.Msg):
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
 				if recMsg.MsgType =='text':
