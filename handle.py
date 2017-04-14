@@ -38,7 +38,7 @@ class Handle(object):
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
 				if recMsg.MsgType =='text':
-					content = "test"
+					content = "测试中"
 					replyMsg = reply.TextMsg(toUser,fromUser,content)
 				if recMsg.MsgType == 'image':
 					mediaId = recMsg.MediaId

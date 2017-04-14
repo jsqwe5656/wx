@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*- 
 
 import web
-import urllib2
 from handle import Handle
 
 urls=(
