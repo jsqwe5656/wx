@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 
-import web
+import web,gettoken
 from handle import Handle
 
 urls=(
@@ -9,6 +9,7 @@ urls=(
 
 
 if __name__ == "__main__":
-
+	value = gettoken.get_token()
+	print value
 	app = web.application(urls,globals())
 	app.run()

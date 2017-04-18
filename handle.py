@@ -5,6 +5,7 @@ import web
 import reply
 import receive
 
+
 class Handle(object):
 	def GET(self):
 		try:

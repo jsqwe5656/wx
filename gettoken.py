@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from urllib import request
+import urllib2
 import json
 import os,sqlite3,time
 
@@ -10,44 +10,64 @@ appID = 'wxe2402d474b877cbb'
 appSecret = '14d15d7cb4acedc5771f2d704763efde'
 url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' %(appID,appSecret)
 print(url)
+
 def url_token():
-    with request.urlopen(url) as f:
-        data = f.read()
-        data = data.decode('utf-8')
-        jdata = json.loads(data)
-        print(jdata)
-        access_token = jdata.get('access_token',None)
-        if access_token != None:
-            print('not null %s' %access_token)
-            set_token(access_token)
-        else:
-            url_token()
+    f = urllib2.urlopen(url)
+    data = f.read()
+    data = data.decode('utf-8')
+    jdata = json.loads(data)
+    print(jdata)
+    access_token = jdata.get('access_token',None)
+    if access_token != None:
+        set_token(access_token)
+    else:
+        url_token()
+    f.close()
     
 #保存token到sqlite数据库中
 def set_token(access_token):
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
     createtime = time.time()
-    values = None
+    try:
+        sql = "update token set token=\"%s\",createtime=\"%s\" where id=1" %(access_token,createtime)
+        cursor.execute(sql)
+        conn.commit()
+    except Exception as e:
+        print(e.args)
+    finally:
+        cursor.close()
+        conn.close()
+
+#从数据库中获取token
+def get_token():
+    conn = sqlite3.connect(db_file)
+    cursor = conn.cursor()
     try:
         cursor.execute(r"select *from token where id=1")
-        #获得查询结果集
         values = cursor.fetchall()
-        print(values)
+        return check_time(values)
     except Exception as e:
         print(e)
     finally:
         cursor.close()
         conn.close()
 
-   # cursor.execute(r"insert into token(token,createtime) values(%s,%s)" %(access_token,createtime))
 
-    pass
-
-#从数据库中获取token
-def get_token():
-    pass
+#判断上次获取token的时间是否超过2小时 默认有效期为7200秒
+def check_time(values):
+    time_now = time.time()
+    time_db = float(values[0][2])
+    time_difference = time_now - time_db
+    print time_difference
+    if time_difference > 3600:
+        url_token()
+        get_token()
+    else:
+        return values[0][1]
 
 if __name__ =='__main__':
-    url_token()
+    #url_token()
+    vaule = get_token()
+    print vaule
     
