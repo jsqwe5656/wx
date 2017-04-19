@@ -7,7 +7,9 @@ import os,sqlite3,time
 db_file = os.path.join(os.path.dirname(__file__),'token.db')
 
 appID = 'wxe2402d474b877cbb'
+appID = 'wx34ebef966ed60eef'
 appSecret = '14d15d7cb4acedc5771f2d704763efde'
+appSecret = '5aa11ef6fa390d1f6d72839cfbb8467b'
 url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' %(appID,appSecret)
 print(url)
 
@@ -62,7 +64,7 @@ def check_time(values):
     print time_difference
     if time_difference > 3600:
         url_token()
-        get_token()
+        return get_token()
     else:
         return values[0][1]
 
