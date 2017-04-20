@@ -73,7 +73,7 @@ if __name__ =='__main__':
           ]
     }
     """
-    #myMenu.create(postJson)
-    myMenu.delete()
+    myMenu.create(postJson)
+    #myMenu.query()
     #value = gettoken.get_token()
     #print value
