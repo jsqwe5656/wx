@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import urllib2
+import urllib
 import gettoken
 
 class Menu(object):
@@ -12,30 +12,30 @@ class Menu(object):
         postUrl = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s" % self.accessToken
         if isinstance(postData,unicode):
             postData = postData.encode('utf-8')
-        urlResp = urllib2.urlopen(url=postUrl,data=postData)
+        urlResp = urllib.urlopen(url=postUrl,data=postData)
         data = urlResp.read()
         data = data.decode('utf-8')
         print data
 
     def query(self):
         postUrl = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=%s" % self.accessToken
-        urlResp = urllib2.urlopen(url=postUrl)
+        urlResp = urllib.urlopen(url=postUrl)
         print urlResp.read
 
     def delete(self):
         postUrl = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s" % self.accessToken
-        urlResp = urllib2.urlopen(url=postUrl)
+        urlResp = urllib.urlopen(url=postUrl)
         print urlResp.read
 
     #获取自定义菜单配置接口
     def get_current_selfmenu_info(self):
         postUrl = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s" % self.accessToken
-        urlResp = urllib2.urlopen(url=postUrl)
+        urlResp = urllib.urlopen(url=postUrl)
         print urlResp.read
 
 if __name__ =='__main__':
     myMenu = Menu()
-    postJson = """
+    postJson = r"""
 {
  	"button":[
  	{	
