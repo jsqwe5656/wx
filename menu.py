@@ -73,7 +73,7 @@ if __name__ =='__main__':
             {
                 "type": "view",
                 "name": "官网",
-                "url": "http://www.healfroce.com"
+                "url": "http://www.healforce.com"
             }
           ]
     }
