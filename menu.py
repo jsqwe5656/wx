@@ -45,7 +45,7 @@ if __name__ =='__main__':
                 "key":  "mpGuide"
             },
             {
-                "name": "公众平台",
+                "name": "服务",
                 "sub_button":
                 [
                     {
@@ -62,13 +62,18 @@ if __name__ =='__main__':
                         "type": "view",
                         "name": "返回码说明",
                         "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433747234&token=&lang=zh_CN"
+                    },
+                    {
+                        "type": "view",
+                        "name": "绑定账号",
+                        "url": "http://www.sina.com"
                     }
                 ]
             },
             {
-                "type": "media_id",
-                "name": "旅行",
-                "media_id": "z2zOokJvlzCXXNhSjF46gdx6rSghwX2xOD5GUV9nbX4"
+                "type": "view",
+                "name": "官网",
+                "url": "http://www.healfroce.com"
             }
           ]
     }
