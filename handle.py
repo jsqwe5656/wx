@@ -5,7 +5,6 @@ import web
 import reply
 import receive
 
-
 class Handle(object):
 	def GET(self):
 		try:
@@ -33,6 +32,7 @@ class Handle(object):
 	def POST(self):
 		try:
 			webData = web.data()
+			#后台打印
 			print('handle POST webdata %s',webData)
 			recMsg = receive.parse_xml(webData)
 			if isinstance(recMsg,receive.Msg):
@@ -43,8 +43,16 @@ class Handle(object):
 					replyMsg = reply.TextMsg(toUser,fromUser,content)
 				if recMsg.MsgType == 'image':
 					mediaId = recMsg.MediaId
-					replyMsg = replu.ImageMsg(toUser,fromUser,content)
+					replyMsg = reply.ImageMsg(toUser,fromUser,content)
 				return replyMsg.send()
+			if isinstance(recMsg,receive.EventMsg):
+				toUser = recMsg.FromUserName
+				fromUser = recMsg.ToUserName
+				if recMsg.Event == 'CLOCK':
+					if recMsg.Eventkey =='mpGuide':
+						content = u"编写中".encode('utf-8')
+						replyMsg = reply.TextMsg(toUser,fromUser,content)
+						return 
 			else:
 				print('not handle now')
 				return reply.Msg().send()
