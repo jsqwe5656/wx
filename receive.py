@@ -8,7 +8,7 @@ def parse_xml(web_data):
 	xmlData = ET.fromstring(web_data)
 	msg_type = xmlData.find('MsgType').text
 	if msg_type =='event':
-		event_type = xmlData.find('Eevent').text
+		event_type = xmlData.find('Event').text
 		if event_type == 'CLICK':
 			print ('to event')
 			return Click(xmlData)
@@ -18,7 +18,7 @@ def parse_xml(web_data):
 		return TextMsg(xmlData)
 
 	elif msg_type == 'image':
-		print ('to image')
+
 		return ImageMsg(xmlData)
 
 
