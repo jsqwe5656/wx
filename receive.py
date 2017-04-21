@@ -7,10 +7,15 @@ def parse_xml(web_data):
 		return None
 	xmlData = ET.fromstring(web_data)
 	msg_type = xmlData.find('MsgType').text
-	if msg_type == 'text':
+	if msg_type =='event':
+		event_type = xmlData.find('Eevent').text
+		if event_type == 'CLICK':
+			return Click(xmlData)
+	elif msg_type == 'text':
 		return TextMsg(xmlData)
 	elif msg_type == 'image':
 		return ImageMsg(xmlData)
+
 
 class Msg(object):
 	def __init__(self,xmlData):
@@ -31,6 +36,15 @@ class ImageMsg(Msg):
 		self.PicUrl = xmlData.find('PicUrl').text
 		self.MediaId  = xmlData.find('MediaId').text
 
-class EventMsg(Msg):
-	pass
+class EventMsg(object):
+	def __init__(self,xmlData):
+		self.ToUserName = xmlData.find('ToUserName').text
+		self.FromUserName = xmlData.find('FromUserName').text
+		self.CreateTime = xmlData.find('CreateTime').text
+		self.MsgType = xmlData.find('MsgType').text
+		self.Event = xmlData.find('Event').text
 
+class Click(EventMsg):
+	def __init__(self,xmlData):
+		EventMsg.__init__(self,xmlData)
+		self.EventKey = xmlData.find('EventKey').text

@@ -70,8 +70,8 @@ def check_time(values):
     else:
         return values[0][1]
 
-if __name__ =='__main__':
+#if __name__ =='__main__':
     #url_token()
-    vaule = get_token()
-    print vaule
+#    vaule = get_token()
+#    print vaule
     

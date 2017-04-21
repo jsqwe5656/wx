@@ -42,7 +42,7 @@ if __name__ =='__main__':
             {
                 "type": "click",
                 "name": "开发指引",
-                "key":  "mpGuide"
+                "key":  "zbf"
             },
             {
                 "name": "服务",

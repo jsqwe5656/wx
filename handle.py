@@ -48,11 +48,11 @@ class Handle(object):
 			if isinstance(recMsg,receive.EventMsg):
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
-				if recMsg.Event == 'CLOCK':
-					if recMsg.Eventkey =='mpGuide':
-						content = u"编写中".encode('utf-8')
+				if recMsg.Event == 'CLICK':
+					if recMsg.Eventkey == 'zbf':
+						content = u"编写中 and key:%s" %(recMsg.Eventkey).encode('utf-8')
 						replyMsg = reply.TextMsg(toUser,fromUser,content)
-						return 
+						return replyMsg.send()
 			else:
 				print('not handle now')
 				return reply.Msg().send()
