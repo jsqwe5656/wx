@@ -35,10 +35,10 @@ class Handle(object):
 			#后台打印
 			print('handle POST webdata',webData)
 			recMsg = receive.parse_xml(webData)
-			toUser = recMsg.FromUserName
-			fromUser = recMsg.ToUserName
-			print (recMsg.Event)
 			if isinstance(recMsg,receive.Msg):
+				toUser = recMsg.FromUserName
+				fromUser = recMsg.ToUserName
+				print (recMsg.Event)
 				if recMsg.MsgType =='text':
 					content = u"测试中".encode('utf-8')
 					replyMsg = reply.TextMsg(toUser,fromUser,content)
@@ -47,6 +47,9 @@ class Handle(object):
 					replyMsg = reply.ImageMsg(toUser,fromUser,content)
 				return replyMsg.send()
 			if isinstance(recMsg,receive.EventMsg):
+				toUser = recMsg.FromUserName
+				fromUser = recMsg.ToUserName
+				print (recMsg.Event)
 				if recMsg.Event == 'CLICK':
 					if recMsg.Eventkey == 'zbf':
 						content = u"编写中".encode('utf-8')
