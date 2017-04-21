@@ -10,14 +10,17 @@ def parse_xml(web_data):
 	if msg_type =='event':
 		event_type = xmlData.find('Eevent').text
 		if event_type == 'CLICK':
+			print ('to event')
 			return Click(xmlData)
-		print ('to event')
+
 	elif msg_type == 'text':
-		return TextMsg(xmlData)
 		print ('to text')
+		return TextMsg(xmlData)
+
 	elif msg_type == 'image':
-		return ImageMsg(xmlData)
 		print ('to image')
+		return ImageMsg(xmlData)
+
 
 
 class Msg(object):
