@@ -40,7 +40,7 @@ class Handle(object):
 			print (recMsg.Event)
 			if isinstance(recMsg,receive.Msg):
 				if recMsg.MsgType =='text':
-					content = "测试中"
+					content = u"测试中".encode('utf-8')
 					replyMsg = reply.TextMsg(toUser,fromUser,content)
 				if recMsg.MsgType == 'image':
 					mediaId = recMsg.MediaId
