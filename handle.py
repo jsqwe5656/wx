@@ -48,9 +48,9 @@ class Handle(object):
 			if isinstance(recMsg,receive.EventMsg):
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
-				print (recMsg.Event)
+				print (recMsg.Event,recMsg.EventKey)
 				if recMsg.Event == 'CLICK':
-					if recMsg.Eventkey == 'zbf':
+					if recMsg.EventKey == 'zbf':
 						content = u"编写中".encode('utf-8')
 						replyMsg = reply.TextMsg(toUser,fromUser,content)
 						return replyMsg.send()
