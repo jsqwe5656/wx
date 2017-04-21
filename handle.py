@@ -33,11 +33,11 @@ class Handle(object):
 		try:
 			webData = web.data()
 			#后台打印
-			print('handle POST webdata %s',webData)
+			print('handle POST webdata',webData)
 			recMsg = receive.parse_xml(webData)
+			toUser = recMsg.FromUserName
+			fromUser = recMsg.ToUserName
 			if isinstance(recMsg,receive.Msg):
-				toUser = recMsg.FromUserName
-				fromUser = recMsg.ToUserName
 				if recMsg.MsgType =='text':
 					content = "测试中"
 					replyMsg = reply.TextMsg(toUser,fromUser,content)
@@ -46,11 +46,9 @@ class Handle(object):
 					replyMsg = reply.ImageMsg(toUser,fromUser,content)
 				return replyMsg.send()
 			if isinstance(recMsg,receive.EventMsg):
-				toUser = recMsg.FromUserName
-				fromUser = recMsg.ToUserName
 				if recMsg.Event == 'CLICK':
 					if recMsg.Eventkey == 'zbf':
-						content = u"编写中 and key:%s" %(recMsg.Eventkey).encode('utf-8')
+						content = u"编写中".encode('utf-8')
 						replyMsg = reply.TextMsg(toUser,fromUser,content)
 						return replyMsg.send()
 			else:
