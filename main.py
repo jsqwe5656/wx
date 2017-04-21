@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 import web
+from handle import Handle
 
 urls=(
 	'/wx','Handle',
