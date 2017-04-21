@@ -37,6 +37,7 @@ class Handle(object):
 			recMsg = receive.parse_xml(webData)
 			toUser = recMsg.FromUserName
 			fromUser = recMsg.ToUserName
+			print (recMsg.Event)
 			if isinstance(recMsg,receive.Msg):
 				if recMsg.MsgType =='text':
 					content = "测试中"
@@ -56,3 +57,4 @@ class Handle(object):
 				return reply.Msg().send()
 		except Exception,e:
 			return e
+
