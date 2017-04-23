@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*- 
 
 import web
-from handle import Handle
+from handle import Handle,SendMessage,Register
 
 urls=(
 	'/wx','Handle',
+	'/wx/sendmessage','SendMessage',
+	'/wx/register','Register'
 )
 
 

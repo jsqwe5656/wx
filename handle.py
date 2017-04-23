@@ -60,3 +60,15 @@ class Handle(object):
 		except Exception,e:
 			return e
 
+class SendMessage(object):
+	def GET(self):
+		def GET(self):
+			try:
+				data = web.input()
+				if len(data) == 0:
+					return "this is the handle view "
+			except Exception as e:
+				return e
+
+class Register(object):
+	pass

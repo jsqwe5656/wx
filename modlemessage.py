@@ -35,10 +35,11 @@ values["data"] = {"first": {
                        "color":"#173177"
                    }}
 
-post_json = json.dumps(values)
-req = urllib2.Request(url,post_json)
-response = urllib2.urlopen(req)
-res = response.read()
-response.close()
-print(res)
+def send_message():
+    post_json = json.dumps(values)
+    req = urllib2.Request(url,post_json)
+    response = urllib2.urlopen(req)
+    res = response.read()
+    response.close()
+    print(res)
 
