@@ -62,13 +62,25 @@ class Handle(object):
 
 class SendMessage(object):
 	def GET(self):
-		def GET(self):
-			try:
-				data = web.input()
-				if len(data) == 0:
-					return "this is the handle view "
-			except Exception as e:
-				return e
+		try:
+			data = web.input()
+			print(data)
+			if len(data) == 0:
+				return "this is the handle view2 "
+		except Exception as e:
+			print (e)
+			return e
+
+	def POST(self):
+		try:
+			webdata = web.data()
+			print(webdata)
+
+		except Exception as e:
+			return e
+
+
+
 
 class Register(object):
 	pass
