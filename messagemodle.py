@@ -16,3 +16,38 @@ class MessageModle(object):
         self.touser = None
         self.template_id = None
         self.data = None
+
+#返回消息对象
+class ResultModle(object):
+    def __init__(self):
+        self.errorCode = None
+        self.errorMessage = None
+
+#接受的健康数据
+class HealthMessage(object):
+    def __init__(self):
+        self.phoneNumber = None         #电话号
+        self.openID = None              #公众号对应的唯一openid
+        self.messageMode = None         #数据类型 血氧、血压
+        self.data = None                #具体数值
+
+class HealthData(object):
+    def __init__(self):
+        self.message = None
+        self.time = None
+
+#血氧数值
+class BOData(HealthData):
+    def __init__(self):
+        self.spo2 = None
+        self.bmp = None
+        self.pi = None
+
+#血压数值
+class BPMdata(HealthData):
+    def __init__(self):
+        self.high = None
+        self.low = None
+        self.bmp = None
+
+
