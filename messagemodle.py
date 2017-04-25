@@ -17,11 +17,12 @@ class MessageModle(object):
         self.template_id = None
         self.data = None
 
-#返回消息对象
+#返回消息对象跟微信统一
 class ResultModle(object):
     def __init__(self):
-        self.errorCode = None
-        self.errorMessage = None
+        self.errorcode = None
+        self.errmsg = None
+        self.msgid = None
 
 #接受的健康数据
 class HealthMessage(object):

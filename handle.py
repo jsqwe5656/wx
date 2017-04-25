@@ -68,18 +68,19 @@ def sendHealthMessage(openID,mode,data):
 	value = MessageValue()
 	if mode ==0:
 		value.first = {"value": "血氧测量提醒", "color": "#173177"}
-		value.keyword1 = {"value": "zbf is the best", "color": "#173177"}
-		value.keyword2 = {"value": "23333", "color": "#173177"}
-		value.keyword3 = {"value": "12138", "color": "#173177"}
-		value.keyword4 = {"value": "i love you", "color": "#173177"}
-		value.remark = {"value": "do you love me", "color": "#173177"}
+		value.keyword1 = {"value": data.time, "color": "#173177"}
+		value.keyword2 = {"value": "血氧饱和度", "color": "#173177"}
+		str = u"血氧饱和度:"+ data.spo2 + u" 心律:" + data.bmp + u" 血流灌注指数:" + data.pi
+		value.keyword3 = {"value":str , "color": "#173177"}
+		value.keyword4 = {"value": data.message, "color": "#173177"}
+		value.remark = {"value": "感谢您的使用", "color": "#173177"}
 	else:
 		value.first = {"value": "血压测量提醒", "color": "#173177"}
-		value.keyword1 = {"value": "zbf is the best", "color": "#173177"}
+		value.keyword1 = {"value": data.time, "color": "#173177"}
 		value.keyword2 = {"value": "23333", "color": "#173177"}
 		value.keyword3 = {"value": "12138", "color": "#173177"}
-		value.keyword4 = {"value": "i love you", "color": "#173177"}
-		value.remark = {"value": "do you love me", "color": "#173177"}
+		value.keyword4 = {"value": data.message, "color": "#173177"}
+		value.remark = {"value": "感谢您的使用", "color": "#173177"}
 	dvalue = value.__dict__
 	values = MessageModle()
 	values.template_id = "7MF6StPyTu7nWc5PaFR_XKnGJb9URKfhli0hfsuDcVE"
@@ -87,12 +88,14 @@ def sendHealthMessage(openID,mode,data):
 	values.data = dvalue
 	dvalues = values.__dict__
 	jvalues = json.dumps(dvalues)
-	#return modlemessage.send_message(jvalues)
+	print(jvalues)
+	return modlemessage.send_message(jvalues)
 
 #处理json
 def checkHealthMessage(param):
 	healthdata = HealthMessage()
 	healthdata.__dict__ = json.loads(param)
+	print(healthdata.__dict__)
 	mode = healthdata.messageMode
 	if  mode == 0:		#血氧
 		data_bo=BOData()
@@ -114,6 +117,7 @@ class SendMessage(object):
 			print (e)
 			return e
 
+#{"phoneNumber":123,"openID":"o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE","messageMode":0,"data":{"message":"message","time":"123132","spo2":"98%","bmp":"82bmp","pi":"9.1%"}}
 	def POST(self):
 		result = ResultModle()
 		try:
@@ -121,8 +125,8 @@ class SendMessage(object):
 			print(webdata)
 			return checkHealthMessage(web.data())
 		except Exception as e:
-			result.errorCode = 30050
-			result.errorMessage = e.message
+			result.errorcode = 30050
+			result.errmsg = e.message
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
 			return jresult
