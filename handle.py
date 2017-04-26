@@ -133,7 +133,8 @@ class SendMessage(object):
 			return jresult
 
 
-
 #注册接口
 class Register(object):
-	pass
+	def GET(self):
+		return 'zbf is the best'
+		#return render.hello()
