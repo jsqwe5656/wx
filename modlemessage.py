@@ -48,22 +48,22 @@ def send_message(post_json):
     return res
 
 #下方是消息数据
-value = MessageValue()
-value.first = {"value":"血氧测量提醒","color":"#173177"}
-value.keyword1 = {"value":"zbf is the best","color":"#173177"}
-value.keyword2 = {"value":"23333","color":"#173177"}
-value.keyword3 = {"value":"12138","color":"#173177"}
-value.keyword4 = {"value":"i love you","color":"#173177"}
-value.remark = {"value":"do you love me","color":"#173177"}
-dvalue = value.__dict__
+# value = MessageValue()
+# value.first = {"value":"血氧测量提醒","color":"#173177"}
+# value.keyword1 = {"value":"zbf is the best","color":"#173177"}
+# value.keyword2 = {"value":"23333","color":"#173177"}
+# value.keyword3 = {"value":"12138","color":"#173177"}
+# value.keyword4 = {"value":"i love you","color":"#173177"}
+# value.remark = {"value":"do you love me","color":"#173177"}
+# dvalue = value.__dict__
 
 #下方是模板整体json数据
-values = MessageModle()
-values.template_id = "7MF6StPyTu7nWc5PaFR_XKnGJb9URKfhli0hfsuDcVE"
-values.touser = "o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE"
-values.data = dvalue
-dvalues = values.__dict__
-jvalues = json.dumps(dvalues)
+# values = MessageModle()
+# values.template_id = "7MF6StPyTu7nWc5PaFR_XKnGJb9URKfhli0hfsuDcVE"
+# values.touser = "o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE"
+# values.data = dvalue
+# dvalues = values.__dict__
+# jvalues = json.dumps(dvalues)
 #print(jvalues)
 #result = send_message(jvalues)
 #print(result)

@@ -70,7 +70,7 @@ def sendHealthMessage(openID,mode,data):
 		value.first = {"value": "血氧测量提醒", "color": "#173177"}
 		value.keyword1 = {"value": data.time, "color": "#173177"}
 		value.keyword2 = {"value": "血氧饱和度", "color": "#173177"}
-		str = u"血氧饱和度:"+ data.spo2 + u" 心律:" + data.bmp + u" 血流灌注指数:" + data.pi
+		str = u"血氧饱和度:"+ data.spo2 + u" 心率:" + data.bmp + u" 血流灌注指数:" + data.pi
 		value.keyword3 = {"value":str , "color": "#173177"}
 		value.keyword4 = {"value": data.message, "color": "#173177"}
 		value.remark = {"value": "感谢您的使用", "color": "#173177"}
@@ -106,6 +106,7 @@ def checkHealthMessage(param):
 		data_bpm.__dict__ = healthdata.data
 		return sendHealthMessage(healthdata.openID, mode, data_bpm)
 
+#推送消息接口
 class SendMessage(object):
 	def GET(self):
 		try:
@@ -133,6 +134,6 @@ class SendMessage(object):
 
 
 
-
+#注册接口
 class Register(object):
 	pass
