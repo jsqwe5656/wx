@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">  
 <head>  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
-    <title>注册</title>  
+    <title>绑定手机号</title>
 </head>  
 <body>  
-<h1 align="center">绑定账号</h1>  
+<h1 align="center">绑定手机号</h1>
 <!-- <form name="reg" action="#" method="post" > -->  
     <table  align="center" valign="middle">  
         <tr>  
@@ -19,7 +19,7 @@
         </tr>       
         <tr>  
             <td></td>  
-            <td><input type="button" name="regster" value="绑定账户"  style="width:140px;" onclick=registerUser() /></td>  
+            <td><input type="button" name="regster" value="绑定手机号"  style="width:140px;" onclick=bindUser() /></td>
         </tr>  
     </table>  	
 <!--  </form> -->  
@@ -27,9 +27,8 @@
 <script src="http://su.bdimg.com/static/superplus/js/lib/jquery-1.10.2_d88366fd.js"></script>  
  <script type="text/javascript" language="javascript">  
   
-    function registerUser() {  
-        var mobile = document.getElementById("mobile").value;  
-        var password = document.getElementById("password").value;  
+    function bindUser() {
+        var mobile = document.getElementById("mobile").value;
         var idcode = document.getElementById("idcode").value;  
         if(mobile==''){  
             alert(" 请输入电话号码！");  
@@ -44,15 +43,14 @@
         type:'post',        
         url:'/rs/rs',    
         data: JSON.stringify({"code":1,"attribute":[  
-        {"key": "mobile", "value": mobile},  
-        {"key": "password", "value": password},  
+        {"key": "mobile", "value": mobile},
         {"key": "idcode", "value": idcode}]}),   
         async:false,  
         cache:false,    
         dataType:'json',    
         success:function(data){  
             if(data.errcode==0){  
-                alert("开户成功");  
+                alert("绑定成功");
             }  
             else{  
                 alert(data.detail);  
