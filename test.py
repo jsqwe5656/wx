@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import urllib2,json
+import leancloud
+
+leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
 
 
 # 获取验证码
@@ -33,10 +36,12 @@ def query():
     request.add_header('X-LC-Id','KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz')
     request.add_header('X-LC-Key','TNpBJHMPmG2lVGbTJeVkHUgE')
     request.add_header('Content-Type', 'application/json')
-    #response = urllib2.urlopen(url)
-    #postdata =
+    #postdata = {"where":{"userTel":"13100871692"}}
+    #postdata = u'where={"userTel":"13100871692"}'
     response = urllib2.urlopen(request)
     print response.read()
 
-query()
+#query()
 
+def query_sdk():
+    pass
