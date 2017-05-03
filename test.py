@@ -43,5 +43,46 @@ def query():
 
 #query()
 
-def query_sdk():
-    pass
+#使用sdk中的查询方法查看对应公众号是否已被绑定
+def query_tel2openid():
+    Todo = leancloud.Object.extend('UserInfo')
+    query = Todo.query
+
+    query.equal_to('weChat_opeid','o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE')
+    query_list = query().find()                     #如果数据库中没有对应条件的查询结果 则会返回[]
+    if len(query_list) == 1:
+        #TODO
+        print 'exits'
+    else:
+        # TODO
+        print 'zbf'
+
+query_tel2openid()
+
+#使用sdk中的查询方法查看对应手机号是否已绑定公众号
+def query_tel2openid(tel):
+    Todo = leancloud.Object.extend('UserInfo')
+    query = Todo.query
+    #query.equal_to('userTel','13100871692')
+    query.equal_to('userTel', tel)
+    query_list = query().find()
+    if len(query_list) == 1:
+        d = query_list[0].__dict__
+        # for k,v in d.items():
+        #     print 'dict[%s]=' %k,v
+        d2 = d.get('_attributes')
+        # for k,v in d2.items():
+        #     print 'dict[%s]=' % k, v
+        openid = d2.get('weChat_opeid')
+        # TODO
+        if openid == 'none':
+            return d2
+        else:
+            print '123'
+    else:
+        #TODO
+        print 'TODO'
+
+
+
+#query_tel2openid()
