@@ -114,6 +114,9 @@ class SendMessage(object):
 			print(data)
 			if len(data) == 0:
 				return "this is the handle view2 "
+			else:
+				openid = data.openid
+				return openid
 		except Exception as e:
 			print (e)
 			return e
