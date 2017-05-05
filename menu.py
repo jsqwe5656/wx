@@ -40,9 +40,35 @@ if __name__ =='__main__':
         "button":
         [
             {
-                "type": "click",
-                "name": "开发指引",
-                "key":  "zbf"
+                "name": "微产品",
+                "sub_button":
+                [
+                    {
+                        "type": "view",
+                        "name": "血氧仪",
+                        "url": "http://h.eqxiu.com/s/OGEEizse"
+                    },
+                    {
+                        "type": "view",
+                        "name": "心电仪",
+                        "url": "http://eqxiu.com/s/dMCHHVRc"
+                    },
+                    {
+                        "type": "view",
+                        "name": "血压计",
+                        "url": "http://eqxiu.com/s/nsReVv3a"
+                    },
+                    {
+                        "type": "view",
+                        "name": "雾化器",
+                        "url": "http://eqxiu.com/s/IEorAr0D"
+                    },
+                    {
+                        "type": "view",
+                        "name": "防雾霾口罩",
+                        "url": "http://c.eqxiu.com/s/1uYZ4mOV"
+                    }
+                ]
             },
             {
                 "name": "服务",
@@ -50,18 +76,18 @@ if __name__ =='__main__':
                 [
                     {
                         "type": "view",
-                        "name": "更新公告",
-                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                        "name": "售后服务",
+                        "url": "http://www.healoo.com/index.php?ac=article&at=list&tid=245"
                     },
                     {
                         "type": "view",
-                        "name": "接口权限说明",
-                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                        "name": "问题反馈",
+                        "url": "http://www.healoo.com/index.php?ac=form&at=list&fgid=1"
                     },
                     {
                         "type": "view",
-                        "name": "返回码说明",
-                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433747234&token=&lang=zh_CN"
+                        "name": "软件下载",
+                        "url": "http://www.healoo.com/index.php?ac=article&at=list&tid=253"
                     },
                     {
                         "type": "view",
@@ -71,9 +97,15 @@ if __name__ =='__main__':
                 ]
             },
             {
-                "type": "view",
-                "name": "官网",
-                "url": "http://www.healforce.com"
+                "name": "旗舰店",
+                "sub_button":
+                [
+                    {
+                        "type": "view",
+                        "name": "京东官方旗舰店",
+                        "url": "https://healforce.jd.com/"
+                    }
+                ]
             }
           ]
     }

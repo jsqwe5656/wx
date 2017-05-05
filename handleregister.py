@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+'处理绑定手机号的逻辑'
 
 import urllib2,json
 import leancloud
+
 
 leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
 
