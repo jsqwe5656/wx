@@ -19,9 +19,13 @@ render = render_jinja(
 # #注册接口
 class Register(object):
 	def GET(self):
-		data = web.data()
-		openid = data.openid
-		return render.hello(name='zbf')
+		try:
+			data = web.data()
+			openid = data.openid
+			return render.hello(name='zbf')
+		except Exception as e:
+			print e
+			return e
 
 if __name__ == "__main__":
 	app.run()
