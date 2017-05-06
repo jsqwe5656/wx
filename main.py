@@ -26,6 +26,14 @@ class Register(object):
 		except Exception as e:
 			print e
 			return e
+	def POST(self):
+		try:
+			data = web.data()
+			print ('register post',data)
+		except Exception as e:
+			print e
+			return e
+
 
 if __name__ == "__main__":
 	app.run()
