@@ -42,7 +42,7 @@ class Handle(object):
 				toUser = recMsg.FromUserName
 				fromUser = recMsg.ToUserName
 				if recMsg.MsgType =='text':
-					content = u"测试中".encode('utf-8')
+					content = u"客服暂未开放，如需帮助请点击菜单旗舰店联系客服，或者拨打售后服务热线400-820-6276".encode('utf-8')
 					replyMsg = reply.TextMsg(toUser,fromUser,content)
 				if recMsg.MsgType == 'image':
 					mediaId = recMsg.MediaId
