@@ -7,7 +7,8 @@ from web.contrib.template import render_jinja
 urls=(
 	'/wx','Handle',
 	'/wx/sendmessage','SendMessage',
-	'/wx/register','Register'
+	'/wx/register','Register',
+    '/MP_verify_RX39sdTWhT3TlHFl.txt','Auth'
 )
 app = web.application(urls,globals())
 
@@ -33,6 +34,15 @@ class Register(object):
 		except Exception as e:
 			print e
 			return e
+
+class Auth(object):
+    def GET(self):
+        try:
+            data = web.data()
+            return 'MP_verify_RX39sdTWhT3TlHFl.txt'
+        except Exception as e:
+            print e
+            return e
 
 
 if __name__ == "__main__":
