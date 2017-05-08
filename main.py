@@ -8,7 +8,7 @@ urls=(
 	'/wx','Handle',
 	'/wx/sendmessage','SendMessage',
 	'/wx/register','Register',
-    '/MP_verify_RX39sdTWhT3TlHFl.txt','Auth'
+    #'/MP_verify_RX39sdTWhT3TlHFl.txt','Auth'
 )
 app = web.application(urls,globals())
 
