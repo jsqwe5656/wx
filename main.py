@@ -22,7 +22,7 @@ class Register(object):
 	def GET(self):
 		try:
 			data = web.data()
-			openid = data.openid
+			print data
 			return render.hello(name='zbf')
 		except Exception as e:
 			print e
