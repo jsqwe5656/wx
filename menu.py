@@ -92,7 +92,7 @@ if __name__ =='__main__':
                     {
                         "type": "view",
                         "name": "绑定账号",
-                        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2402d474b877cbb&redirect_uri=httpsjiayong.healoo.com%2fwx%2fregister&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+                        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa18fb38adf638832&redirect_uri=httpjiayong.healoo.com%2fwx%2fregister&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
                     }
                 ]
             },
