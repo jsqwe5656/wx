@@ -7,9 +7,13 @@ import os,sqlite3,time
 db_file = os.path.join(os.path.dirname(__file__),'token.db')
 
 appID = 'wxe2402d474b877cbb'
+#公司的id
+appID = 'wxa18fb38adf638832'
 #appID = 'wx34ebef966ed60eef'
 #appID = 'wx4536896b8007ed7e'
 appSecret = '14d15d7cb4acedc5771f2d704763efde'
+#公司的密匙
+appSecret = '302f0854589590283926c89c017ff21b'
 #appSecret = '5aa11ef6fa390d1f6d72839cfbb8467b'
 #appSecret = '1c5a4ac37d02b31a448bec9f0629b957'
 url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' %(appID,appSecret)
