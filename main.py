@@ -39,7 +39,7 @@ class Auth(object):
     def GET(self):
         try:
             data = web.data()
-            return 'MP_verify_RX39sdTWhT3TlHFl.txt'
+            return 'RX39sdTWhT3TlHFl'
         except Exception as e:
             print e
             return e
