@@ -7,9 +7,10 @@
 </head>
 
 <body>
-<h1 id="demo">hello world</h1>
+<h1 id="demo">hello world{{result.openID}}</h1>
 </body>
     <script>
+        var openid = {{result.openID}}
         document.getElementById('demo').innerHTML = "Hello world~"
         document.write("asdasdasd")
     </script>

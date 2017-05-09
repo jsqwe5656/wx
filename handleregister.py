@@ -53,9 +53,10 @@ def query_openid2exist(openid):
     else:
         result.code = 0
         result.message = 'no openid exist'
-    dresult = result.__dict__
-    jresult = json.dumps(dresult)
-    return jresult
+        result.openID = openid
+    #dresult = result.__dict__
+    #jresult = json.dumps(dresult)
+    return result
 
 #使用sdk中的查询方法查看对应手机号是否已绑定公众号 输入手机号之后发送的请求
 def query_tel2openid(tel):

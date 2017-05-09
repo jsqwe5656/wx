@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 import web,json
+import handleregister
 from handle import Handle,SendMessage
 from web.contrib.template import render_jinja
 
@@ -22,13 +23,15 @@ class Register(object):
 	def GET(self):
 		try:
 			data = web.input()
-			d = data.code
-			print (data, type(data), d)
-			dj = json.dumps(data)
-			print(dj)
-			ddj = json.loads(dj)
-			code = ddj.get('code')
-			print (ddj,code,len(code))
+			code = data.code
+			print (data, type(data), code)
+			result = handleregister.query_openid2exist(code)
+			return render.hello(result)
+			# dj = json.dumps(data)
+			# print(dj)
+			# ddj = json.loads(dj)
+			# code = ddj.get('code')
+			# print (ddj,code,len(code))
 
 		except Exception as e:
 			print e
