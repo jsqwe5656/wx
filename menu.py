@@ -110,6 +110,7 @@ if __name__ =='__main__':
           ]
     }
     """
+    #"url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa18fb38adf638832&redirect_uri=http%3a%2f%2fjiayong.healoo.com%2fwx%2fregister&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
     myMenu.create(postJson)
     #myMenu.query()
     #value = gettoken.get_token()
