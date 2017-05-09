@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 
-import web
+import web,json
 from handle import Handle,SendMessage
 from web.contrib.template import render_jinja
 
@@ -22,7 +22,8 @@ class Register(object):
 	def GET(self):
 		try:
 			data = web.input()
-			d = data.__dict__
+			print (data.values())
+			d = data.__dict__ = json.loads(data)
 			code = d.get('code')
 			print (data,code,type(data))
 		except Exception as e:
