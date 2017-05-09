@@ -23,7 +23,12 @@ class Register(object):
 		try:
 			data = web.input()
 			d = data.code
-			print (data,type(data))
+			print (data, type(data), d)
+			dj = json.dumps(data.__dict__)
+			print(dj)
+			ddj = json.loads(dj)
+			print (ddj,ddj.get('code'))
+
 		except Exception as e:
 			print e
 			return e
