@@ -21,7 +21,7 @@ render = render_jinja(
 class Register(object):
 	def GET(self):
 		try:
-			data = web.data()
+			data = web.input()
 			print data
 			return render.hello(name='zbf')
 		except Exception as e:
