@@ -25,7 +25,7 @@ class Register(object):
 			d = data.code
 			print (data, type(data), d)
 			dj = json.dumps(data)
-			print(dj)
+			print(dj,dj.get('code'))
 			ddj = json.loads(dj)
 			print (ddj,ddj.get('code'))
 
