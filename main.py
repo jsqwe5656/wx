@@ -22,7 +22,9 @@ class Register(object):
 	def GET(self):
 		try:
 			data = web.input()
-			print data
+			d = data.__dict__
+			code = d.get('code')
+			print (data,code,type(data))
 		except Exception as e:
 			print e
 			return e
