@@ -111,7 +111,9 @@ class SendMessage(object):
 	def GET(self):
 		try:
 			data = web.input()
-			print(data)
+			d = data.__dict__
+			code = d.get('code')
+			print(data,code,type(data))
 			if len(data) == 0:
 				return "this is the handle view2 "
 			else:

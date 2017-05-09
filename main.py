@@ -23,7 +23,6 @@ class Register(object):
 		try:
 			data = web.input()
 			print data
-			return render.hello(name='zbf')
 		except Exception as e:
 			print e
 			return e
@@ -35,14 +34,6 @@ class Register(object):
 			print e
 			return e
 
-class Auth(object):
-    def GET(self):
-        try:
-            data = web.data()
-            return 'RX39sdTWhT3TlHFl'
-        except Exception as e:
-            print e
-            return e
 
 
 if __name__ == "__main__":
