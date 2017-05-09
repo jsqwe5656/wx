@@ -25,9 +25,10 @@ class Register(object):
 			d = data.code
 			print (data, type(data), d)
 			dj = json.dumps(data)
-			print(dj,dj.get('code'))
+			print(dj)
 			ddj = json.loads(dj)
-			print (ddj,ddj.get('code'))
+			code = ddj.get('code')
+			print (ddj,code,len(code))
 
 		except Exception as e:
 			print e
