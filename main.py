@@ -22,7 +22,6 @@ class Register(object):
 	def GET(self):
 		try:
 			data = web.input()
-			print (data.values())
 			d = data.__dict__ = json.loads(data)
 			code = d.get('code')
 			print (data,code,type(data))
