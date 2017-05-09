@@ -24,7 +24,7 @@ class Register(object):
 			data = web.input()
 			d = data.code
 			print (data, type(data), d)
-			dj = json.dumps(data.__dict__)
+			dj = json.dumps(data)
 			print(dj)
 			ddj = json.loads(dj)
 			print (ddj,ddj.get('code'))
