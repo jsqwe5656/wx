@@ -7,7 +7,7 @@ import leancloud
 
 leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
 
-class Result(object):
+class Result(dict):
     def __int__(self):
         self.code = None
         self.message = None
@@ -15,8 +15,14 @@ class Result(object):
         self.tellNumber = None
         self.openID = None
 
-    def __iter__(self):
-        return self
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r"'Model' object has no attribute '%s',by zbf" %key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
 
 # 获取验证码
 def get_smx(tel):
