@@ -15,6 +15,9 @@ class Result(object):
         self.tellNumber = None
         self.openID = None
 
+    def __iter__(self):
+        return self
+
 # 获取验证码
 def get_smx(tel):
     url = 'https://api.leancloud.cn/1.1/requestSmsCode'
