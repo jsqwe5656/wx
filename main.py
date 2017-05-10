@@ -2,14 +2,14 @@
 
 import web,json
 import handleregister
-from handle import Handle,SendMessage
+from handle import Handle,SendMessage,GetSNSToBind
 from web.contrib.template import render_jinja
 
 urls=(
 	'/wx','Handle',
 	'/wx/sendmessage','SendMessage',
 	'/wx/register','Register',
-    #'/MP_verify_RX39sdTWhT3TlHFl.txt','Auth'
+	'/wx/getsns2bind','GetSNSToBind'
 )
 app = web.application(urls,globals())
 
@@ -20,6 +20,7 @@ render = render_jinja(
 
 #注册接口
 class Register(object):
+	#校验openid的有效性
 	def GET(self):
 		try:
 			data = web.input()
@@ -29,15 +30,12 @@ class Register(object):
 			result = handleregister.query_openid2exist(openid)
 			print(result.code,result.openID)
 			return render.hello(openid = result.openID,code = result.code)
-			# dj = json.dumps(data)
-			# print(dj)
-			# ddj = json.loads(dj)
-			# code = ddj.get('code')
-			# print (ddj,code,len(code))
 
 		except Exception as e:
 			print e
 			return e
+
+	#绑定账号
 	def POST(self):
 		try:
 			data = web.data()

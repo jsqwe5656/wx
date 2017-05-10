@@ -4,7 +4,7 @@ import hashlib
 import web,json
 import reply
 import receive
-import modlemessage
+import modlemessage,handleregister
 
 from messagemodle import ResultModle,HealthMessage,BOData,BPMdata,MessageValue,MessageModle
 
@@ -135,9 +135,13 @@ class SendMessage(object):
 			jresult = json.dumps(dresult)
 			return jresult
 
-
-#注册接口
-class Register(object):
-	def GET(self):
-		return 'zbf is the best'
-		#return render.hello()
+#请求短信验证码
+class GetSNSToBind(object):
+	#请求短信验证码
+	def POST(self):
+		try:
+			data = web.data()
+			print ('GetSNSToBind post',data)
+		except Exception as e:
+			print e
+			return e
