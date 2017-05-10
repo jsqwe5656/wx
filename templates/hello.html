@@ -7,11 +7,11 @@
 </head>
 
 <body>
-<h1 id="demo">hello world{{result.openID}}</h1>
+<h1 id="demo">hello world{{openID}}</h1>
 </body>
     <script>
-        var openid = {{result.openID}}
+        var openid = {{openID}}
         document.getElementById('demo').innerHTML = "Hello world~"
-        document.write("asdasdasd")
+        document.write(openid)
     </script>
 </html>
