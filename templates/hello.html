@@ -8,9 +8,10 @@
 
 <body>
 <h1 id="demo">hello world{{openid}}</h1>
+<h1 id="openid">{{openid}}</h1>
 </body>
     <script>
-        var openid1 = {{openid}}
+        var openid1 = document.getElementById("openid").valueOf()
 //        document.getElementById('demo').innerHTML = "Hello world~"
         document.write(openid1)
     </script>
