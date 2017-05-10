@@ -3,6 +3,7 @@
 
 import urllib2,json
 import leancloud
+import gettoken
 
 
 leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
@@ -105,8 +106,22 @@ def update_save2openid(result):
     to.set('weChat_openid',result.openID)
     return to.save()
 
-result = Result()
-result.openID = 'o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE'
-result.objectID = '5859faec61ff4b0063dd3b13'
-print update_save2openid(result)
+#根据code获取用户的openid
+def getopenid(code):
+    url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code'%(gettoken.appID,gettoken.appSecret,code)
+    #request = urllib2(url)
+    response = urllib2.urlopen(url)
+    #jdata = json.dumps(response)
+    data = response.read()
+    ddata = json.loads(data)
+    print (ddata.get('openid'))
+    openid = ddata.get('openid')
+    return openid
+
+# result = Result()
+# result.openID = 'o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE'
+# result.objectID = '5859faec61ff4b0063dd3b13'
+# print update_save2openid(result)
+
+getopenid('061BTTlg10oCRv0DIlng1ZU4mg1BTTlU')
 

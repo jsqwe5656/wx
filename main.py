@@ -18,14 +18,15 @@ render = render_jinja(
 	encoding = 'utf-8',
 )
 
-# #注册接口
+#注册接口
 class Register(object):
 	def GET(self):
 		try:
 			data = web.input()
 			code = data.code
 			print (data, type(data), code)
-			result = handleregister.query_openid2exist(code)
+			openid = handleregister.getopenid(code)
+			result = handleregister.query_openid2exist(openid)
 			print(result.code,result.openID)
 			return render.hello(openid = result.openID,code = result.code)
 			# dj = json.dumps(data)
