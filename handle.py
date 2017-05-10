@@ -83,7 +83,7 @@ def sendHealthMessage(openID,mode,data):
 		value.remark = {"value": "感谢您的使用", "color": "#173177"}
 	dvalue = value.__dict__
 	values = MessageModle()
-	values.template_id = "7MF6StPyTu7nWc5PaFR_XKnGJb9URKfhli0hfsuDcVE"
+	values.template_id = "LZ3DwtGM8rU13Z_lWInZEvW2rRai3HHEdyMnWIR6YwE"
 	values.touser = openID
 	values.data = dvalue
 	dvalues = values.__dict__
@@ -121,7 +121,7 @@ class SendMessage(object):
 			print (e)
 			return e
 
-#{"phoneNumber":123,"openID":"o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE","messageMode":0,"data":{"message":"message","time":"123132","spo2":"98%","bmp":"82bmp","pi":"9.1%"}}
+#{"phoneNumber":123,"openID":"oKtGus_DR1lrf0zhdQuec-PKtIOM","messageMode":0,"data":{"message":"message","time":"123132","spo2":"98%","bmp":"82bmp","pi":"9.1%"}}
 	def POST(self):
 		result = ResultModle()
 		try:
