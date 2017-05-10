@@ -108,6 +108,7 @@ def checkHealthMessage(param):
 
 #推送消息接口
 class SendMessage(object):
+	#占位的get
 	def GET(self):
 		try:
 			data = web.input()
@@ -121,7 +122,8 @@ class SendMessage(object):
 			print (e)
 			return e
 
-#{"phoneNumber":123,"openID":"oKtGus_DR1lrf0zhdQuec-PKtIOM","messageMode":0,"data":{"message":"message","time":"123132","spo2":"98%","bmp":"82bmp","pi":"9.1%"}}
+	#{"phoneNumber":123,"openID":"oKtGus_DR1lrf0zhdQuec-PKtIOM","messageMode":0,"data":{"message":"message","time":"123132","spo2":"98%","bmp":"82bmp","pi":"9.1%"}}
+	#推送公众号模板消息接口
 	def POST(self):
 		result = ResultModle()
 		try:
@@ -141,7 +143,13 @@ class GetSNSToBind(object):
 	def POST(self):
 		try:
 			data = web.data()
+
 			print ('GetSNSToBind post',data)
 		except Exception as e:
 			print e
-			return e
+			result = ResultModle()
+			result.errorcode = 30051
+			result.errmsg = e.message
+			dresult = result.__dict__
+			jresult = json.dumps(dresult)
+			return jresult
