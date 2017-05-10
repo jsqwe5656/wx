@@ -26,6 +26,7 @@ class Register(object):
 			code = data.code
 			print (data, type(data), code)
 			result = handleregister.query_openid2exist(code)
+			print(result.code,result.openID)
 			return render.hello(openid = result.openID,code = result.code)
 			# dj = json.dumps(data)
 			# print(dj)
