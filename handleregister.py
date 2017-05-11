@@ -98,11 +98,11 @@ def query_tel2openid(tel):
             return get_smx(tel)
         else:
             result = ResultModle()
-            result.errmsg = 30051
+            result.errorcode = 30051
             result.errmsg = 'openid is exist'
             dresult = result.__dict__
             print (dresult)
-            jresult = json.dumps(result)
+            jresult = json.dumps(dresult)
             print (jresult)
             return jresult
     else:
