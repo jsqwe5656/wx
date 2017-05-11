@@ -141,15 +141,19 @@ class SendMessage(object):
 class GetSNSToBind(object):
 	#请求短信验证码
 	def POST(self):
+		result = ResultModle()
 		try:
 			data = web.data()
-
-			print ('GetSNSToBind post',data)
+			print ('GetSNSToBind post', data)
+			ddata = json.loads(data)
+			tel = ddata.get('tel')
+			result = handleregister.query_tel2openid(tel)
+			print ('zbfasd',result)
+			return result
 		except Exception as e:
 			print e
-			result = ResultModle()
 			result.errorcode = 30051
-			result.errmsg = e.message
+			result.errmsg = u'发送失败'
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
 			return jresult

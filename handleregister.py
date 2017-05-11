@@ -4,6 +4,7 @@
 import urllib2,json
 import leancloud
 import gettoken
+from messagemodle import ResultModle
 
 
 leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
@@ -35,7 +36,16 @@ def get_smx(tel):
     postdata = {"mobilePhoneNumber": str(tel)}
     jdata = json.dumps(postdata)
     response = urllib2.urlopen(request,jdata)
-    return response.read()
+    result = ResultModle()
+    data = response.read()
+    if len(data) == 2:
+        result.errorcode = 30000
+        result.errmsg = u'success'
+        dresult = result.__dict__
+        jresult = json.dumps(dresult)
+        return jresult
+    else:
+        return data
 
 #校验验证码
 def check_sms(tel,snscode):
@@ -76,24 +86,26 @@ def query_tel2openid(tel):
     query.equal_to('userTel', tel)
     query_list = query().find()
 
-    result = Result()
     if len(query_list) == 1:
         d = query_list[0].__dict__
-        for k,v in d.items():
-            print 'dict[%s]=' %k,v
+        # for k,v in d.items():
+        #     print 'dict[%s]=' %k,v
         d2 = d.get('_attributes')
-        for k,v in d2.items():
-           print 'dict[%s]=' % k, v
+        # for k,v in d2.items():
+        #    print 'dict[%s]=' % k, v
         openID = d2.get('weChat_openid')
         if openID == 'none':
             return get_smx(tel)
         else:
+            result = Result()
             result.tellNumber = d2.get('userTel')
             result.objectID = d2.get('objectId')
             result.code = 1
             result.message = 'openid is exist'
-            dresult = result.__dict__
-            jresult = json.dumps(dresult)
+            #dresult = result.__dict__
+            #print (dresult)
+            jresult = json.dumps(result)
+            print (jresult)
             return jresult
     else:
         return get_smx(tel)
@@ -123,5 +135,5 @@ def getopenid(code):
 # result.objectID = '5859faec61ff4b0063dd3b13'
 # print update_save2openid(result)
 
-getopenid('061BTTlg10oCRv0DIlng1ZU4mg1BTTlU')
+#getopenid('061BTTlg10oCRv0DIlng1ZU4mg1BTTlU')
 

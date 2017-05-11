@@ -38,6 +38,7 @@ class Register(object):
 	def POST(self):
 		try:
 			data = web.data()
+
 			print ('register post',data)
 		except Exception as e:
 			print e
