@@ -151,7 +151,7 @@ class GetSNSToBind(object):
 			result = handleregister.query_tel2openid(tel)
 			print ('zbfasd',result)
 			# web.header("content-type","application/json")
-			web.header("Access-Control-Allow-Origin","*")
+			# web.header("Access-Control-Allow-Origin","*")
 			# web.header("Access-Control-Allow-Methods","POST")
 			# web.header("Access-Control-Allow-Headers","x-requested-with/content-type")
 			return result
