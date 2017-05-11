@@ -163,5 +163,4 @@ class GetSNSToBind(object):
 			jresult = json.dumps(dresult)
 			return jresult
 
-	def GET(self):
 
