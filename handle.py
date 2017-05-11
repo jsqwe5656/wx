@@ -157,7 +157,7 @@ class GetSNSToBind(object):
 			return result
 		except Exception as e:
 			print e
-			result.errorcode = 30051
+			result.errorcode = 30050
 			result.errmsg = u'发送失败'
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
