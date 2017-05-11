@@ -161,6 +161,7 @@ class GetSNSToBind(object):
 			result.errmsg = u'发送失败'
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
+			web.header("Access-Control-Allow-Origin", "*")
 			return jresult
 
 

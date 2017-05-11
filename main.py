@@ -40,8 +40,10 @@ class Register(object):
 			data = web.data()
 
 			print ('register post',data)
+			web.header("Access-Control-Allow-Origin", "*")
 		except Exception as e:
 			print e
+			web.header("Access-Control-Allow-Origin", "*")
 			return e
 
 

@@ -97,11 +97,9 @@ def query_tel2openid(tel):
         if openID == 'none':
             return get_smx(tel)
         else:
-            result = Result()
-            result.tellNumber = d2.get('userTel')
-            result.objectID = d2.get('objectId')
-            result.code = 1
-            result.message = 'openid is exist'
+            result = ResultModle()
+            result.errmsg = 30051
+            result.errmsg = 'openid is exist'
             #dresult = result.__dict__
             #print (dresult)
             jresult = json.dumps(result)
