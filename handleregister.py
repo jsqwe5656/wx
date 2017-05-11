@@ -100,8 +100,8 @@ def query_tel2openid(tel):
             result = ResultModle()
             result.errmsg = 30051
             result.errmsg = 'openid is exist'
-            #dresult = result.__dict__
-            #print (dresult)
+            dresult = result.__dict__
+            print (dresult)
             jresult = json.dumps(result)
             print (jresult)
             return jresult
