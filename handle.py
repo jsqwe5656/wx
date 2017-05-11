@@ -139,6 +139,7 @@ class SendMessage(object):
 
 #请求短信验证码
 class GetSNSToBind(object):
+
 	#请求短信验证码
 	def POST(self):
 		result = ResultModle()
@@ -149,6 +150,10 @@ class GetSNSToBind(object):
 			tel = ddata.get('tel')
 			result = handleregister.query_tel2openid(tel)
 			print ('zbfasd',result)
+			web.header('content-type','application/json',)
+			web.header('Access-Control-Allow-Origin','*')
+			web.header('Access-Control-Allow-Methods','POST')
+			web.header('Access-Control-Allow-Headers','x-requested-with/content-type')
 			return result
 		except Exception as e:
 			print e
@@ -157,3 +162,6 @@ class GetSNSToBind(object):
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
 			return jresult
+
+	def GET(self):
+
