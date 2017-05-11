@@ -4,6 +4,8 @@ import web,json
 import handleregister
 from handle import Handle,SendMessage,GetSNSToBind
 from web.contrib.template import render_jinja
+from messagemodle import ResultModle
+from handleregister import Result
 
 urls=(
 	'/wx','Handle',
@@ -36,11 +38,18 @@ class Register(object):
 
 	#绑定账号
 	def POST(self):
+		result = ResultModle()
 		try:
 			data = web.data()
+			ddata = json.loads(data)
+			print ('register post', data)
+			send = Result()
+			send.tellNumber = ddata.get('tel')
+			send.code = ddata.get('sns')
+			send.openID = ddata.get('openid')
 
-			print ('register post',data)
 			web.header("Access-Control-Allow-Origin", "*")
+
 		except Exception as e:
 			print e
 			web.header("Access-Control-Allow-Origin", "*")

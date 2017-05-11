@@ -9,6 +9,7 @@ from messagemodle import ResultModle
 
 leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
 
+#接口同意返回类
 class Result(dict):
     def __int__(self):
         self.code = None
@@ -25,6 +26,29 @@ class Result(dict):
 
     def __setattr__(self, key, value):
         self[key] = value
+
+#电话号未被注册验证验证码后添加到userinfo中
+def save_tel2userinfo(result):
+    TodoFolder = leancloud.Object.extend('UserInfo')
+    todo_folder = TodoFolder()
+    todo_folder.set('userID', result.objectID)
+    todo_folder.set('userTel', result.tellNumber)
+    todo_folder.save()
+    #将_User表中的id 改成 保存成功后的 userinfo 中的 objectID
+    result.objectID = todo_folder.id
+    print update_save2openid(result)
+
+#查询电话号是否已被注册
+def query_tel2exist(result):
+    Todo = leancloud.Object.extend('UserInfo')
+    query = Todo.query
+
+    query.equal_to('userTel',result.tellNumber)
+    query_list = query().find()    #如果数据库中没有对应条件的查询结果 则会返回[]
+    if len(query_list) == 1:
+        return                    #userinfo表中已有
+    else:
+        save_tel2userinfo(result)
 
 # 获取验证码
 def get_smx(tel):
@@ -48,16 +72,27 @@ def get_smx(tel):
         return data
 
 #校验验证码
-def check_sms(tel,snscode):
+def check_sms(result):
     url2 = 'https://api.leancloud.cn/1.1/usersByMobilePhone'
+    #url2 = "https://api.leancloud.cn/1.1/verifySmsCode/%s?mobilePhoneNumber=%s" % (result.code,result.tellNumber)
+    print url2
     request2 = urllib2.Request(url2)
     request2.add_header('X-LC-Id','KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz')
     request2.add_header('X-LC-Key','TNpBJHMPmG2lVGbTJeVkHUgE')
     request2.add_header('Content-Type', 'application/json')
-    postdata2 = {"mobilePhoneNumber": str(tel),"smsCode":str(snscode)}
+    postdata2 = {"mobilePhoneNumber": str(result.tellNumber),"smsCode":str(result.code)}
     jdata2 = json.dumps(postdata2)
     response2 = urllib2.urlopen(request2,jdata2)
+    #response2 = urllib2.urlopen(request2)
+    data = response2.read()
+    print data
+    ddata = json.loads(data)
+    check_result = Result()
+    check_result.tellNumber = ddata.get('mobilePhoneNumber')
+    check_result.openID = ddata.get('objectId')
+    query_tel2exist(check_result)
     return response2.read()
+    #return update_save2openid(result)
 
 #使用sdk中的查询方法查看对应公众号是否已被绑定 进入界面需要发送的请求
 def query_openid2exist(openid):
@@ -134,4 +169,8 @@ def getopenid(code):
 # print update_save2openid(result)
 
 #getopenid('061BTTlg10oCRv0DIlng1ZU4mg1BTTlU')
+result = Result()
+result.tellNumber = '13100871692'
+result.code = 318453
+print(check_sms(result))
 
