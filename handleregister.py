@@ -9,7 +9,7 @@ from messagemodle import ResultModle
 
 leancloud.init('KHU4OSb7llLkhNDkIcT5BKJc-gzGzoHsz','TNpBJHMPmG2lVGbTJeVkHUgE')
 
-#接口同意返回类
+#接口统一返回类
 class Result(dict):
     def __int__(self):
         self.code = None
