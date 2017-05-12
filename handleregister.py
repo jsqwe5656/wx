@@ -93,8 +93,8 @@ def check_sms(result):
     check_result.tellNumber = ddata.get('mobilePhoneNumber')
     check_result.objectID = ddata.get('objectId')
     check_result.openID = result.openID
-    query_tel2exist(check_result)
-    return response2.read()
+    return query_tel2exist(check_result)
+    #return response2.read()
     #return update_save2openid(result)
 
 #使用sdk中的查询方法查看对应公众号是否已被绑定 进入界面需要发送的请求
@@ -173,11 +173,11 @@ def getopenid(code):
 
 #getopenid('061BTTlg10oCRv0DIlng1ZU4mg1BTTlU')
 #验证sns
-result = Result()
-result.tellNumber = '13100871692'
-result.code = 318453
-result.openID = 'asdasdasdasdasdasdasdasd'
-print(check_sms(result))
+# result = Result()
+# result.tellNumber = '13100871692'
+# result.code = 318453
+# result.openID = 'asdasdasdasdasdasdasdasd'
+# print(check_sms(result))
 
 
 
