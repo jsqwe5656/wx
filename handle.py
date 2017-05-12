@@ -129,8 +129,7 @@ class SendMessage(object):
 		try:
 			webdata = web.data()
 			data = web.input()
-			print('-->input',data.__dict__)
-
+			print('-->input',data)
 			print webdata
 			return checkHealthMessage(web.data())
 		except Exception as e:
