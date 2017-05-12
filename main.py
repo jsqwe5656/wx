@@ -47,7 +47,6 @@ class Register(object):
 			send.tellNumber = ddata.get('tel')
 			send.code = ddata.get('sns')
 			send.openID = ddata.get('openid')
-			web.header("Access-Control-Allow-Origin", "*")
 			sresult = handleregister.check_sms(send)
 			if len(sresult) >0:
 				result.errmsg = u'绑定成功'
@@ -55,16 +54,17 @@ class Register(object):
 				dresult = result.__dict__
 				jresult = json.dumps(dresult)
 				print ('zbf in register',jresult)
+				web.header("Access-Control-Allow-Origin", "*")
 				return jresult
 
 		except Exception as e:
 			print e
-			web.header("Access-Control-Allow-Origin", "*")
 			result.errmsg = u'绑定失败'
 			result.errorcode = 30031
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
 			print ('zbf in register', jresult)
+			web.header("Access-Control-Allow-Origin", "*")
 			return jresult
 
 
