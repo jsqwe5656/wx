@@ -59,8 +59,9 @@ class Register(object):
 
 		except Exception as e:
 			print e
-			result.errmsg = u'绑定失败'
+			result.errmsg = u'绑定失败' + e
 			result.errorcode = 30031
+
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
 			print ('zbf in register', jresult)
