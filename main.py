@@ -54,6 +54,7 @@ class Register(object):
 				result.errorcode = 300030
 				dresult = result.__dict__
 				jresult = json.dumps(dresult)
+				print jresult
 				return jresult
 
 		except Exception as e:
@@ -63,6 +64,7 @@ class Register(object):
 			result.errorcode = 300031
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
+			print jresult
 			return jresult
 
 
