@@ -51,7 +51,7 @@ class Register(object):
 			sresult = handleregister.check_sms(send)
 			if len(sresult) >0:
 				result.errmsg = u'绑定成功'
-				result.errorcode = 300030
+				result.errorcode = 30030
 				dresult = result.__dict__
 				jresult = json.dumps(dresult)
 				print ('zbf in register',jresult)
@@ -61,7 +61,7 @@ class Register(object):
 			print e
 			web.header("Access-Control-Allow-Origin", "*")
 			result.errmsg = u'绑定失败'
-			result.errorcode = 300031
+			result.errorcode = 30031
 			dresult = result.__dict__
 			jresult = json.dumps(dresult)
 			print ('zbf in register', jresult)
