@@ -36,7 +36,7 @@ def save_tel2userinfo(result):
     todo_folder.save()
     #将_User表中的id 改成 保存成功后的 userinfo 中的 objectID
     result.objectID = todo_folder.id
-    print update_save2openid(result)
+    return update_save2openid(result)
 
 #查询电话号是否已被注册
 def query_tel2exist(result):
@@ -44,11 +44,13 @@ def query_tel2exist(result):
     query = Todo.query
 
     query.equal_to('userTel',result.tellNumber)
-    query_list = query().find()    #如果数据库中没有对应条件的查询结果 则会返回[]
-    if len(query_list) == 1:
-        return                    #userinfo表中已有
+    query_list = query().find()                                          #如果数据库中没有对应条件的查询结果 则会返回[]
+    if len(query_list) == 1:                                            #userinfo表中已有
+        data = query_list[0].__dict__
+        result.objectID = data.get('_attributes').get('objectId')
+        return update_save2openid(result)
     else:
-        save_tel2userinfo(result)
+        return save_tel2userinfo(result)
 
 # 获取验证码
 def get_smx(tel):
@@ -89,7 +91,8 @@ def check_sms(result):
     ddata = json.loads(data)
     check_result = Result()
     check_result.tellNumber = ddata.get('mobilePhoneNumber')
-    check_result.openID = ddata.get('objectId')
+    check_result.objectID = ddata.get('objectId')
+    check_result.openID = result.openID
     query_tel2exist(check_result)
     return response2.read()
     #return update_save2openid(result)
@@ -169,8 +172,12 @@ def getopenid(code):
 # print update_save2openid(result)
 
 #getopenid('061BTTlg10oCRv0DIlng1ZU4mg1BTTlU')
+#验证sns
 result = Result()
 result.tellNumber = '13100871692'
 result.code = 318453
+result.openID = 'asdasdasdasdasdasdasdasd'
 print(check_sms(result))
+
+
 
