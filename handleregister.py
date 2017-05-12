@@ -179,5 +179,11 @@ def getopenid(code):
 # result.openID = 'asdasdasdasdasdasdasdasd'
 # print(check_sms(result))
 
+def test():
+    url2 = 'http://jiayong.healoo.com/wx/sendmessage'
+    request2 = urllib2.Request(url2)
+    postdata = {"zbf":"asdasd"}
+    jdata = json.dumps(postdata)
+    response2 = urllib2.urlopen(request2,jdata)
 
-
+test()

@@ -128,7 +128,8 @@ class SendMessage(object):
 		result = ResultModle()
 		try:
 			webdata = web.data()
-			print(webdata)
+			data = web.input()
+			print(webdata,'-->input',data)
 			return checkHealthMessage(web.data())
 		except Exception as e:
 			result.errorcode = 30050
