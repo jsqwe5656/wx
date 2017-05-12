@@ -132,6 +132,7 @@ class SendMessage(object):
 			print(webdata,'-->input',data)
 			return checkHealthMessage(web.data())
 		except Exception as e:
+			print e
 			result.errorcode = 30050
 			result.errmsg = e.message
 			dresult = result.__dict__

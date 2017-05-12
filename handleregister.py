@@ -186,4 +186,4 @@ def test():
     jdata = json.dumps(postdata)
     response2 = urllib2.urlopen(request2,jdata)
 
-test()
+#test()
