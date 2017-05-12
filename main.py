@@ -31,7 +31,7 @@ class Register(object):
 			openid = handleregister.getopenid(code)
 			result = handleregister.query_openid2exist(openid)
 			print(result.code,result.openID)
-			return render.hello(openid = result.openID,code = result.code)
+			return render.register(openid = result.openID,code = result.code)
 		except Exception as e:
 			print e
 			return e

@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+<title>无标题文档</title>
+  <link rel="stylesheet" href="css/phone.css">
+  <link rel="stylesheet" type="text/css" href="css/weui.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-weui.css">
+  <link rel="stylesheet" type="text/css" href="css/demos.css">
+  <link rel="stylesheet" type="text/css" href="css/loading.css">
+</head>
+
+<body>
+<form style="margin:8px" action="#" method="post" >
+  <h3 class="demos-title" style="margin-bottom:50px; margin-top:50px">手机号绑定</h3>
+  <div class="weui_cell">
+    <div class="weui_cell_hd">
+      <label class="weui_label">手机号：</label>
+    </div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" type="tel" id="tell" name="tell" placeholder="请输入手机号" maxlength="11">
+    </div>
+  </div>
+  <div class="weui_cell">
+    <div class="weui_cell_hd">
+      <label class="weui_label">验证码：</label>
+    </div>
+    <div class="weui_cell_bd weui_cell_primary">
+      <input class="weui_input" type="certifycode" id="certifycode" name="certifycode" placeholder="请输入验证码" maxlength="6">
+    </div>
+    <div class="weui_cell_ft"> 
+    
+    <input style="width:117px;" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" value="获取验证码"
+           onclick="clickButton()" id="getCode"/>  </div>
+  </div>
+   <div class="weui_cell"></div>
+  <div class="weui_btn_area" style="margin-top:80px">
+    <a class="weui_btn weui_btn_primary" type="submit" onclick="bindingUser()">提交</a>
+  </div>
+
+  <h1 id="openid" hidden>{{openid}}</h1>
+  <h1 id="openidCode" hidden>{{code}}</h1>
+</form>
+<!--加载菊花-->
+<div class="m-load" id="load" style="display:none;">
+
+</div>
+<div class="m-load2" id="load2" style="display:none">
+  <div class="line">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="circlebg"></div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+function clickButton(){
+    //验证手机号
+    var curMobile = document.getElementById("tell").value;
+    var isMobile = validateMobile(curMobile);
+    if (Boolean(isMobile) == true) {
+        //请求验证码
+        getVerificationCode(curMobile);
+    }
+}
+//oKtGusyWd2qn3RAZsJfKgwi_y99E
+/*--------------------------------------------------------------------------------------------------------------------*/
+$(document).ready(function () {
+    var code = document.getElementById("openidCode").innerHTML;
+    if (code == 1) {
+        alert("当前微信公众号已被注册");
+    }
+});
+
+/*ajax请求验证码*/
+function getVerificationCode(mobileNum) {
+    document.getElementById("getCode").disabled = true;
+
+    jhxs();
+    var jsondata = {"tel":mobileNum};
+    $.ajax({
+        type:"post",
+        url: "http://jiayong.healoo.com/wx/getsns2bind",
+        timeout: 90000,
+        data: JSON.stringify(jsondata),
+        dataType: "json",
+        complete: function () { },
+        success: function (result) {
+            document.getElementById("getCode").disabled = false;
+            jhyc();
+
+            var json = eval(result);
+            var jsonCode = json.errorcode;
+            if (jsonCode == 30051) {
+                alert("该手机已经绑定")
+            } else if (jsonCode == 30000){
+                //倒计时
+                timeCountDown();
+            } else {
+                alert("发送失败");
+            }
+            console.log(json.errorcode);
+            console.log(json);
+        },
+        error: function (result, status) {
+            document.getElementById("getCode").disabled = false;
+            jhyc();
+            if (status == 'timeout'){
+                alert("发送超时，请重新发送");
+            } else if (status == 'error') {
+                alert("获取验证码失败");
+            }
+        }
+    });
+}
+
+
+//菊花显示方法
+function jhxs(){
+    $("#load").css('display','block');
+    $("#load2").css('display','block');
+}
+//菊花隐藏方法
+function jhyc(){
+    $("#load").css('display','none');
+    $("#load2").css('display','none');
+}
+
+/*ajax提交用户绑定请求*/
+function bindingUser() {
+    var openid = document.getElementById("openid").innerHTML;
+
+    var curMobile = document.getElementById("tell").value;
+    var isMobile = validateMobile(curMobile);
+
+    var curCode = document.getElementById("certifycode").value;
+    var isCode = validateCode(curCode);
+    if (Boolean(isMobile) == true && Boolean(isCode) == true) {
+        jhxs();
+        //提交绑定需要的信息
+        var jsondata = {"tel":curMobile,"sns":curCode,"openid":openid};
+        $.ajax({
+            type:"post",
+            url: "http://jiayong.healoo.com/wx/register",
+            data: JSON.stringify(jsondata),
+            dataType: "json",
+            complete: function () { },
+            success: function (result) {
+                jhyc();
+
+                var json = eval(result);
+                var jsonCode = json.errorcode;
+                if (jsonCode == 30030) {
+                    //成功
+
+                } else if (jsonCode == 30031) {
+                    //失败
+                }
+                console.log(json);
+            },
+            error: function (result, status) {
+                jhyc();
+                if (status == 'timeout'){
+                    alert("请求超时，请检查网络");
+                }
+                var json = eval(result);
+                console.log(json);
+            }
+        });
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*倒计时*/
+function timeCountDown() {
+    var obj = $(document.getElementById("getCode"));
+    obj.attr("disabled","disabled");
+  /*按钮倒计时*/
+    var time = 90;
+    var set=setInterval(function(){
+        obj.val(--time+"(s)");
+    }, 1000);
+  /*等待时间*/
+    setTimeout(function(){
+        obj.attr("disabled",false).val("重新获取验证码");
+      /*倒计时*/
+        clearInterval(set);
+    }, 90000);
+}
+
+/*正则验证验证码*/
+function validateCode(code) {
+    if (code.length < 6) {
+        alert('请输入正确的验证码！');
+        return false;
+    }
+    return true;
+}
+
+/*正则验证手机号*/
+function validateMobile(mobile) {
+    if(mobile.length==0)
+    {
+        alert('请输入手机号码！');
+        document.form1.mobile.focus();
+        return false;
+    }
+    if(mobile.length!=11)
+    {
+        alert('请输入有效的手机号码！');
+        document.form1.mobile.focus();
+        return false;
+    }
+
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if(!myreg.test(mobile))
+    {
+        alert('请输入有效的手机号码！');
+        document.form1.mobile.focus();
+        return false;
+    }
+    return true;
+}
+
+</script>
+</body>
+</html>
