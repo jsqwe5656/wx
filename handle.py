@@ -77,8 +77,9 @@ def sendHealthMessage(openID,mode,data):
 	else:
 		value.first = {"value": "血压测量提醒", "color": "#173177"}
 		value.keyword1 = {"value": data.time, "color": "#173177"}
-		value.keyword2 = {"value": "23333", "color": "#173177"}
-		value.keyword3 = {"value": "12138", "color": "#173177"}
+		value.keyword2 = {"value": "血压", "color": "#173177"}
+		str = u"高压:" + data.high + u"低压:" + data.low + u"心率:" + data.bmp
+		value.keyword3 = {"value": str, "color": "#173177"}
 		value.keyword4 = {"value": data.message, "color": "#173177"}
 		value.remark = {"value": "感谢您的使用", "color": "#173177"}
 	dvalue = value.__dict__

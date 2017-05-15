@@ -36,12 +36,12 @@ class HealthData(object):
     def __init__(self):
         self.message = None
         self.time = None
+        self.bmp = None
 
 #血氧数值
 class BOData(HealthData):
     def __init__(self):
         self.spo2 = None
-        self.bmp = None
         self.pi = None
 
 #血压数值
@@ -49,6 +49,5 @@ class BPMdata(HealthData):
     def __init__(self):
         self.high = None
         self.low = None
-        self.bmp = None
 
 
