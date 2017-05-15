@@ -162,9 +162,11 @@ function bindingUser() {
                 var jsonCode = json.errorcode;
                 if (jsonCode == 30030) {
                     //成功
-
+                    alert("绑定成功！");
+                    window.close();
                 } else if (jsonCode == 30031) {
                     //失败
+                    alert("绑定失败！");
                 }
                 console.log(json);
             },
