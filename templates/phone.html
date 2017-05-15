@@ -79,6 +79,7 @@ $(document).ready(function () {
     var code = document.getElementById("openidCode").innerHTML;
     if (code == 1) {
         alert("当前微信公众号已被注册");
+        window.close();
     }
 });
 
@@ -139,46 +140,50 @@ function jhyc(){
 /*ajax提交用户绑定请求*/
 function bindingUser() {
     var openid = document.getElementById("openid").innerHTML;
-
-    var curMobile = document.getElementById("tell").value;
-    var isMobile = validateMobile(curMobile);
-
     var curCode = document.getElementById("certifycode").value;
-    var isCode = validateCode(curCode);
-    if (Boolean(isMobile) == true && Boolean(isCode) == true) {
-        jhxs();
-        //提交绑定需要的信息
-        var jsondata = {"tel":curMobile,"sns":curCode,"openid":openid};
-        $.ajax({
-            type:"post",
-            url: "http://jiayong.healoo.com/wx/register",
-            data: JSON.stringify(jsondata),
-            dataType: "json",
-            complete: function () { },
-            success: function (result) {
-                jhyc();
+    if (openid == "none" || curCode == 1) {
+        alert("该微信号已绑定");
+        window.close();
+    } else {
+        var curMobile = document.getElementById("tell").value;
+        var isMobile = validateMobile(curMobile);
 
-                var json = eval(result);
-                var jsonCode = json.errorcode;
-                if (jsonCode == 30030) {
-                    //成功
-                    alert("绑定成功！");
-                    window.close();
-                } else if (jsonCode == 30031) {
-                    //失败
-                    alert("绑定失败！");
+        var isCode = validateCode(curCode);
+        if (Boolean(isMobile) == true && Boolean(isCode) == true) {
+            jhxs();
+            //提交绑定需要的信息
+            var jsondata = {"tel":curMobile,"sns":curCode,"openid":openid};
+            $.ajax({
+                type:"post",
+                url: "http://jiayong.healoo.com/wx/register",
+                data: JSON.stringify(jsondata),
+                dataType: "json",
+                complete: function () { },
+                success: function (result) {
+                    jhyc();
+
+                    var json = eval(result);
+                    var jsonCode = json.errorcode;
+                    if (jsonCode == 30030) {
+                        //成功
+                        alert("绑定成功！");
+                        window.close();
+                    } else if (jsonCode == 30031) {
+                        //失败
+                        alert("绑定失败！");
+                    }
+                    console.log(json);
+                },
+                error: function (result, status) {
+                    jhyc();
+                    if (status == 'timeout'){
+                        alert("请求超时，请检查网络");
+                    }
+                    var json = eval(result);
+                    console.log(json);
                 }
-                console.log(json);
-            },
-            error: function (result, status) {
-                jhyc();
-                if (status == 'timeout'){
-                    alert("请求超时，请检查网络");
-                }
-                var json = eval(result);
-                console.log(json);
-            }
-        });
+            });
+        }
     }
 }
 
