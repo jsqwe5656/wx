@@ -70,7 +70,14 @@ function clickButton(){
     var isMobile = validateMobile(curMobile);
     if (Boolean(isMobile) == true) {
         //请求验证码
-        getVerificationCode(curMobile);
+        var openid = document.getElementById("openid").innerHTML;
+        var curCode = document.getElementById("certifycode").value;
+        if (openid == "none" || curCode == 1) {
+            alert("该微信号已绑定");
+            window.close();
+        } else {
+            getVerificationCode(curMobile);
+        }
     }
 }
 //oKtGusyWd2qn3RAZsJfKgwi_y99E
