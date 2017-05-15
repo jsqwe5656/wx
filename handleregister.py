@@ -108,6 +108,7 @@ def query_openid2exist(openid):
     if len(query_list) == 1:
         result.code = 1
         result.message = 'openid exist'
+        result.openID = 'none'
     else:
         result.code = 0
         result.message = 'no openid exist'
