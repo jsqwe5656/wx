@@ -3,9 +3,6 @@
 import gettoken,urllib,json,urllib2
 from messagemodle import MessageValue,MessageModle
 
-#发送模版消息接口
-url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s' % gettoken.get_token()
-print url
 #首层json
 #values = {}
 #values["touser"]= "o7-Jk0Z-xvOBSUyIcrLZx0PB3FpE"
@@ -41,6 +38,9 @@ print url
 #                    }}
 
 def send_message(post_json):
+    # 发送模版消息接口
+    url = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s' % gettoken.get_token()
+    print url
     req = urllib2.Request(url,post_json)
     response = urllib2.urlopen(req)
     res = response.read()
