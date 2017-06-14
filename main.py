@@ -11,7 +11,7 @@ urls=(
 	'/wx','Handle',
 	'/wx/sendmessage','SendMessage',
 	'/wx/register','Register',
-	'/wx/getsns2bind','GetSNSToBind'
+	'/wx/getsns2bind','GetSNSToBind',
 )
 app = web.application(urls,globals())
 
